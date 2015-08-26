@@ -23,4 +23,4 @@ Imp hitting a Dwarf?
 
 Basic addressing modes?
 
-Three main strategies of bot?
+ORG and EQU
