@@ -38,7 +38,9 @@ One thing to note is that the memory is never actually empty - it's filled with 
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 |
     +---------+-----------+---------+
 
-This is the key to victory - your main goal is to kill another bot by making it execute a DAT instruction, using methods which will be described shortly.  There are other ways to win, but t his is the main one.
+This is the key to victory - your main goal is to kill another bot by making it execute a DAT instruction, using methods which will be described shortly.  There are other ways to win, but this is the main one.
+
+Your bot executes it's first instruction:
 
          |
          v
@@ -46,17 +48,23 @@ This is the key to victory - your main goal is to kill another bot by making it 
     | MOV 0 5 | SEQ -1 -2 | JMP -2 | ..
     +---------+-----------+--------+----
 
+And it's second:
+
                     |
                     v
     +---------+-----------+--------+----
     | MOV 0 5 | SEQ -1 -2 | JMP -2 | ..
     +---------+-----------+--------+----
 
+An enemy bot replaces your JMP with a DAT:
+
                     |
                     v
     +---------+-----------+---------+----
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 | ..
     +---------+-----------+---------+----
+
+Your bot executes the DAT and dies.  Boom!
 
                               XXX
                                v
@@ -98,6 +106,7 @@ The MOV instruction copies the contents of one address to another address.  In t
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | MOV 0 1 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+----
+                        |________^
 
 Then execution moves to the next address:
 
@@ -114,6 +123,7 @@ That instruction gets executed:
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | MOV 0 1 | MOV 0 1 | .. 
     ----+---------+---------+---------+---------+----
+                                  |_________^
 
 And so on, repeatedly copying it's single instruction until the game ends (typically after 8000 cycles) or another bot kills it.
 
@@ -131,9 +141,9 @@ Here is another simple bot, with a single purpose in life - killing Imps:
 
 This file includes a couple of things in addition to the instructions:
 
-  * ORG: tells the compiler which instruction to start on
-  * ; a comment
-  * loop: a label
+  * ORG - tells the compiler which instruction to start on
+  * ; - a comment
+  * loop - a label
         
 When loaded into memory, it will look like:
 
@@ -150,6 +160,7 @@ The first instruction copies the DAT 9 9 from location -1 to location -2 (one pl
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+                                 ^__________|
 
 The next instrution executed is a JMP, which causes execution to jump to another location - in this case back two places, causing a loop
 
