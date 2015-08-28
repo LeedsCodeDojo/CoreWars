@@ -40,6 +40,8 @@ One thing to note is that the memory is never actually empty - it's filled with 
 
 This is the key to victory - your main goal is to kill another bot by making it execute a DAT instruction, using methods which will be described shortly.  There are other ways to win, but this is the main one.
 
+For example:
+
 Your bot executes it's first instruction:
 
          |
@@ -63,6 +65,7 @@ An enemy bot replaces your JMP with a DAT:
     +---------+-----------+---------+----
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 | ..
     +---------+-----------+---------+----
+                               ^
 
 Your bot executes the DAT and dies.  Boom!
 
@@ -170,7 +173,7 @@ The next instrution executed is a JMP, which causes execution to jump to another
      .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
 
-                                                      |
+                                                      |----------
                                                       v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
@@ -187,22 +190,25 @@ The Imp copies his MOV forward
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+    _________^
 
 The Imp Trap continues copying his DAT backwards
 
-                                                    trap
+                                                   imp trap
                                                       v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+                                 ^_________|
 
             imp
              v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
-
-                                                               trap
+             |_________^
+             
+                                                              imp trap
                                                                  v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
@@ -215,14 +221,16 @@ The Imp copies his MOV over the DAT... right into the trap!
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | MOV 0 1 | MOV 0 1 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+                       |_________^
 
 The Imp Trap copies his killer DAT over the imp's MOV
 
-                                                    trap
+                                                   imp trap
                                                       v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+                                 ^__________|
 
 Oh noes!  The Imp executes the DAT and dies.
 
