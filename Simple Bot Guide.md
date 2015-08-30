@@ -130,7 +130,18 @@ That instruction gets executed:
 
 And so on, repeatedly copying it's single instruction until the game ends (typically after 8000 cycles) or another bot kills it.
 
-So certainly a simple bot, but not particularly good at killing other bots.  Which leads onto..
+One thing to point out at this stage is the addressing used:
+
+## Relative Addressing
+
+All locations are relative to the current position, there are no absolute locations as far as each bot is concerned.
+
+                         |
+                         v
+     ----+---------+---------+---------+---------+----
+      .. | DAT 0 0 | MOV 0 1 | DAT 0 0 | DAT 0 0 | .. 
+     ----+---------+---------+---------+---------+----
+    Address:  -1        0         1         2      ..
 
 ## Example Bot - Imp Trap
 
