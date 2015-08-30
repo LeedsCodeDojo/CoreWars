@@ -194,6 +194,8 @@ And this will keep going until the game ends, copying the DAT instruction to loc
 
 But look what happens when an Imp comes along (each bot takes one instruction at a time):
 
+## Imp vs Imp Trap
+
 The Imp copies his MOV forward
 
     imp
