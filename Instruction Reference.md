@@ -23,15 +23,15 @@ If the A and/or B fields are not used by the instruction, they can be left blank
 | MUL | Multiply | Multiplies one number with another |  |  |
 | DIV | Divide | Divides one number by another |  |  |
 | MOD | Modulo | Divides one number by another and gives the remainder |  |  |
-| JMP | Jump | Continues execution from another address |  |  |
+| JMP | Jump | Continues execution from another address | Location to continue | Not used |
 | JMZ | Jump if Zero | Tests a number and jumps to an address if it's 0 |  |  |
 | JMN | Jump if Not Zero | Tests a number and jumps if it isn't 0 |  |  |
 | DJN | Decrement and Jump if Not Zero | Decrements a number by one, and jumps unless the result is 0 |  |  |
-| SPL | Split | Starts a second process at another address |  |  |
-| SEQ | Skip if Equal | Ccompares two instructions, and skips the next instruction if they are equal |  |  |
-| CMP | Compare | Same as SEQ |  |  |
-| SNE | Skip if Not Equal | Compares two instructions, and skips the next instruction if they aren't equal  |  |  |
-| SLT | Skip if Lower Than | Compares two values, and skips the next instruction if the first is lower than the second |  |  |
+| SPL | Split | Starts a second process at another address | Location to start new process | Not used |
+| SEQ | Skip if Equal | Ccompares two instructions, and skips the next instruction if they are equal | Location to compare  | Location to compare |
+| CMP | Compare | Same as SEQ | Same as SEQ | Same as SEQ |
+| SNE | Skip if Not Equal | Compares two instructions, and skips the next instruction if they aren't equal  | Location to compare | Location to compare |
+| SLT | Skip if Lower Than | Compares two values, and skips the next instruction if the first is lower than the second | Location to compare | Location to compare |
 | LDP | Load from P-space | Loads a number from private storage space |  |  |
 | STP | Save to P-space | Saves a number to private storage space |  |  |
-| NOP | No Operation | Does nothing (executing does not kill bot) |  |  |
+| NOP | No Operation | Does nothing (executing does not kill bot) | Not used | Not used |
