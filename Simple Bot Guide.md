@@ -255,7 +255,7 @@ Oh noes!  The Imp executes the DAT and dies.
 
 ### Further Instructions
 
-For a full set of instructions, see the [Instruction Reference](Instruction reference.md).
+For a full set of instructions, see the [Instruction Reference](Instruction Reference.md).
 
 That gives you all you need to implement a basic bot.  For the more adventurous, read on..
 
@@ -296,3 +296,31 @@ Indirect is the default.  To make a value immediate, put a # in front of it:
     ADD #1, 3
     
 For other addressing modes, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
+
+### Instruction Modifiers
+
+By default, instructions work on both fields, if it makes sense for that instruction.  For example, adding two addresses adds both the A and B fields together:
+
+    +---------+---------+-----------+
+    | ADD 1 2 | DAT 1 2 | DAT 10 20 |
+    +---------+---------+-----------+
+    
+      +---------+---------+-----------+
+    = | ADD 1 2 | DAT 1 2 | DAT 11 22 |
+      +---------+---------+-----------+
+      
+If you want, you can control the fields affected with instruction modifiers, e.g. just add the A fields together:
+
+    +-----------+---------+-----------+
+    | ADD.A 1 2 | DAT 1 2 | DAT 10 20 |
+    +-----------+---------+-----------+
+    
+      +-----------+---------+-----------+
+    = | ADD 1.A 2 | DAT 1 2 | DAT 11 20 |
+      +-----------+---------+-----------+
+      
+To use an instruction modifier just use a full stop after the instruction:  
+
+    ADD.A 1, 2
+    
+For a full set of instruction modifiers, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
