@@ -252,3 +252,47 @@ Oh noes!  The Imp executes the DAT and dies.
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
+
+### Further Instructions
+
+For a full set of instructions, see the [Instruction Reference](Instruction reference.md).
+
+That gives you all you need to implement a basic bot.  For the more adventurous, read on..
+
+# Additional Functionality
+
+### Addressing modes
+
+One thing that you'll need to be aware of to make a more complex bot is the addressing modes.  When you use a number, such as the -2 in 
+
+    ADD -2, -1
+
+It can refer to different things.  The main two addressing modes are immediate, where the number is a value, and indirect, where the number represents an address.
+
+Indirect:
+
+    +---------+---------+-----------+
+    | ADD 1 2 | DAT 1 2 | DAT 10 20 |
+    +---------+---------+-----------+
+    
+      +---------+---------+-----------+
+    = | ADD 1 2 | DAT 1 2 | DAT 11 22 |
+      +---------+---------+-----------+
+    
+Immediate:
+
+    +-----------+---------+-----------+
+    | ADD #33 2 | DAT 1 2 | DAT 10 20 |
+    +-----------+---------+-----------+
+    
+      +-----------+---------+-----------+
+    = | ADD #33 2 | DAT 1 2 | DAT 10 53 |
+      +-----------+---------+-----------+
+      
+You may notice that adding two addresses together (with indirect addressing) adds both fields, whereas adding a single value only adds it to the B field.
+
+Indirect is the default.  To make a value immediate, put a # in front of it:  
+
+    ADD #1, 3
+    
+For other addressing modes, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
