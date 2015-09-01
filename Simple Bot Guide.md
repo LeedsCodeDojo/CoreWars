@@ -176,7 +176,7 @@ The first instruction copies the DAT 9 9 from location -1 to location -2 (one pl
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
                                  ^__________|
 
-The next instrution executed is a JMP, which causes execution to jump to another location - in this case back two places, causing a loop
+The next instrution executed is a JMP, which causes execution to jump to another location - in this case back one place, causing a loop
 
                                                                  |
                                                                  v
