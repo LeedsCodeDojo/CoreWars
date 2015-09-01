@@ -267,9 +267,9 @@ One thing that you'll need to be aware of to make a more complex bot is the addr
 
     ADD -2, -1
 
-It can refer to different things.  The main two addressing modes are immediate, where the number is a value, and indirect, where the number represents an address.
+It can refer to different things.  The main two addressing modes are immediate, where the number is a value, and direct, where the number represents an address.
 
-Indirect - adds fields at location 1 to fields at location 2:
+Direct - adds fields at location 1 to fields at location 2:
 
     +---------+---------+-----------+
     | ADD 1 2 | DAT 1 2 | DAT 10 20 |
@@ -291,11 +291,30 @@ Immediate - adds the number 33 to the B field at location 2:
       
 If there's only a single value to work with, it defaults to operating on field B.  You can control this - see Instruction Modifiers, below.
 
-Indirect is the default addressing mode.  To make a value immediate, put a # in front of it in your source file:  
+Direct is the default addressing mode.  To make a value immediate, put a # in front of it in your source file:  
 
     ADD #33, 2
+
+The next most important mode is Indirect, which gets an address from a different instruction, as indicated by the @ symbol in front of a number.  For example, in this ADD instruction:
+
+    +---------+-----------+---------+-----------+
+    | DAT 0 2 | ADD @-1 2 | DAT 1 2 | DAT 10 20 |
+    +---------+-----------+---------+-----------+
     
-For other addressing modes, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
+The @-1 means 'take the address from the instruction at location -1':
+
+    +---------+-----------+---------+-----------+
+    | DAT 0 2 | ADD @-1 2 | DAT 1 2 | DAT 10 20 |
+    +---------+-----------+---------+-----------+
+            ^--------`
+            
+Therefore, the fields at location 2 (relative to the DAT instruction) get added to the fields at location 2 (relative to the ADD instruction):
+    
+      +---------+-----------+---------+-----------+
+    = | DAT 0 2 | ADD @-1 2 | DAT 1 2 | DAT 11 22 |
+      +---------+-----------+---------+-----------+
+
+The other addressing modes are mainly variants on the Indirect mode - see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html) for details.
 
 ### Instruction Modifiers
 
