@@ -247,7 +247,7 @@ The Imp Trap copies his killer DAT over the imp's MOV
 
 Oh noes!  The Imp executes the DAT and dies.
 
-                                XXX
+                            XXX imp XXX
                                  v
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
      .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
