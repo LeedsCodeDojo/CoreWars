@@ -269,7 +269,7 @@ One thing that you'll need to be aware of to make a more complex bot is the addr
 
 It can refer to different things.  The main two addressing modes are immediate, where the number is a value, and indirect, where the number represents an address.
 
-Indirect:
+Indirect - adds fields at location 1 to fields at location 2:
 
     +---------+---------+-----------+
     | ADD 1 2 | DAT 1 2 | DAT 10 20 |
@@ -279,7 +279,7 @@ Indirect:
     = | ADD 1 2 | DAT 1 2 | DAT 11 22 |
       +---------+---------+-----------+
     
-Immediate:
+Immediate - adds the number 33 to the B field at location 2:
 
     +-----------+---------+-----------+
     | ADD #33 2 | DAT 1 2 | DAT 10 20 |
@@ -289,11 +289,11 @@ Immediate:
     = | ADD #33 2 | DAT 1 2 | DAT 10 53 |
       +-----------+---------+-----------+
       
-You may notice that adding two addresses together (with indirect addressing) adds both fields, whereas adding a single value only adds it to the B field.
+If there's only a single value to work with, it defaults to operating on field B.  You can control this - see Instruction Modifiers, below.
 
-Indirect is the default.  To make a value immediate, put a # in front of it:  
+Indirect is the default addressing mode.  To make a value immediate, put a # in front of it in your source file:  
 
-    ADD #1, 3
+    ADD #33, 2
     
 For other addressing modes, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
 
