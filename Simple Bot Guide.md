@@ -227,7 +227,7 @@ The Imp Trap continues copying his DAT backwards
      .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+-----------+--------+---------+---------+----
 
-The Imp copies his MOV over the DAT... right into the trap!
+The Imp copies his MOV forward... right into the trap!
 
                        imp
                         v
