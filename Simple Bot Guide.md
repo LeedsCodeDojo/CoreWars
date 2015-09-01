@@ -301,7 +301,7 @@ The next most important mode is Indirect, which gets an address from a different
     | DAT 0 2 | ADD @-1 2 | DAT 1 2 | DAT 10 20 |
     +---------+-----------+---------+-----------+
     
-The @-1 means 'take the address from the instruction at location -1':
+The @-1 means 'take the address from the instruction at location -1' (defaulting to the B field):
 
     +---------+-----------+---------+-----------+
     | DAT 0 2 | ADD @-1 2 | DAT 1 2 | DAT 10 20 |
@@ -343,3 +343,16 @@ To use an instruction modifier just use a full stop after the instruction:
     ADD.A 1, 2
     
 For a full set of instruction modifiers, see [The beginner's guide to redcode](http://vyznev.net/corewar/guide.html).
+
+### Final Example - Dwarf
+
+Using some knowledge of addressing modes and instruction modifiers, you could build something like this Dwarf, which bombs memory addresses at intervals of 4 spaces with a DAT instruction.
+
+The B field of the DAT instruction is used to store the location to bomb, which gets incremented by 4 each time:
+
+    ADD #4, 3   ; Adds 4 to the B field of the DAT
+    MOV 2, @2   ; Copies the DAT to the address specified in the B-field at address 2 (the DAT itself)
+    JMP -2      ; Moves processing back -2 instructions
+    DAT #0, #0  ; The instruction to be copied to do the 'bombing' - also used to store the bombing location
+
+If you understand that, you know as much as me!  So go forth and come up with a killer bot of your own - the possibilities are endless..
