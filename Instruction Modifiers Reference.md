@@ -20,7 +20,4 @@ Here are all of the modifiers, applied to a MOV instruction as an example:
 | MOV.X | moves both fields of the source into the opposite fields in the destination |
 | MOV.I | moves the whole source instruction into the destination |
 
-### By Instruction
-
-All instructions have a default modifier if none is supplied.  Not all modifiers can be applied to all instructions.  The following list gives a bit more detail:
-
+All instructions have a default modifier if none is supplied (which changes according to the addressing modes used).  Not all modifiers can be applied to all instructions.
