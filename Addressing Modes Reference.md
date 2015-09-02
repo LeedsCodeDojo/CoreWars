@@ -10,7 +10,7 @@ They also work with labels:
 
     counter: DAT #0, #0
              ADD #1, >counter
-    
+
 | Mode Prefix | Description |
 |-------------|-------------|
 | # | immediate |
