@@ -12,18 +12,18 @@ For illustrative purposes, we will show a section of memory in stunning ASCII ar
 You bot is executed one instruction at a time until there are no instructions to execute, at which point it dies:
 
          |
-         v
+         V
     +---------+-----------+-------+
     | MOV 0 5 | SEQ -1 -2 |       |
     +---------+-----------+-------+
 
-                    v
+                    V
     +---------+-----------+-------+
     | MOV 0 5 | SEQ -1 -2 |       |
     +---------+-----------+-------+
 
                              XXX
-                              v
+                              V
     +---------+-----------+-------+
     | MOV 0 5 | SEQ -1 -2 |       |
     +---------+-----------+-------+
@@ -31,7 +31,7 @@ You bot is executed one instruction at a time until there are no instructions to
 One thing to note is that the memory is never actually empty - it's filled with blank data (DAT 0 0).  You your program actually dies when it hits a DAT instruction:
 
                               XXX
-                               v
+                               V
     +---------+-----------+---------+
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 |
     +---------+-----------+---------+
@@ -43,7 +43,7 @@ For example:
 Your bot executes it's first instruction:
 
          |
-         v
+         V
     +---------+-----------+--------+----
     | MOV 0 5 | SEQ -1 -2 | JMP -2 | ..
     +---------+-----------+--------+----
@@ -51,7 +51,7 @@ Your bot executes it's first instruction:
 And it's second:
 
                     |
-                    v
+                    V
     +---------+-----------+--------+----
     | MOV 0 5 | SEQ -1 -2 | JMP -2 | ..
     +---------+-----------+--------+----
@@ -59,7 +59,7 @@ And it's second:
 An enemy bot replaces your JMP with a DAT:
 
                     |
-                    v
+                    V
     +---------+-----------+---------+----
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 | ..
     +---------+-----------+---------+----
@@ -68,7 +68,7 @@ An enemy bot replaces your JMP with a DAT:
 Your bot executes the DAT and dies.  Boom!
 
                               XXX
-                               v
+                               V
     +---------+-----------+---------+----
     | MOV 0 5 | SEQ -1 -2 | DAT 0 0 | .. 
     +---------+-----------+---------+----
@@ -95,7 +95,7 @@ The simplest bot is a one-liner known as an Imp:
 When loaded, somewhere in memory there will be your instruction, with execution of your bot set to start there:
 
                         |
-                        v
+                        V
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | DAT 0 0 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+----
@@ -103,7 +103,7 @@ When loaded, somewhere in memory there will be your instruction, with execution 
 The MOV instruction copies the contents of one address to another address.  In this case, it copies the contents of location 0 (the current location) to location + 1:
 
                         |
-                        v
+                        V
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | MOV 0 1 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+----
@@ -112,7 +112,7 @@ The MOV instruction copies the contents of one address to another address.  In t
 Then execution moves to the next address:
 
                                  |
-                                 v
+                                 V
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | MOV 0 1 | DAT 0 0 | .. 
     ----+---------+---------+---------+---------+----
@@ -120,7 +120,7 @@ Then execution moves to the next address:
 That instruction gets executed:
 
                                  |
-                                 v
+                                 V
     ----+---------+---------+---------+---------+----
      .. | DAT 0 0 | MOV 0 1 | MOV 0 1 | MOV 0 1 | .. 
     ----+---------+---------+---------+---------+----
@@ -135,7 +135,7 @@ One thing to point out at this stage is the addressing used:
 All locations are relative to the current position, there are no absolute locations as far as each bot is concerned.
 
                          |
-                         v
+                         V
      ----+---------+---------+---------+---------+----
       .. | DAT 0 0 | MOV 0 1 | DAT 0 0 | DAT 0 0 | .. 
      ----+---------+---------+---------+---------+----
@@ -160,7 +160,7 @@ This file includes a couple of things in addition to the instructions:
 When loaded into memory, it will look like:
 
                                                       |
-                                                      v
+                                                      V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | DAT 0 0 | DAT 0 0 | DAT 0 0 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -168,7 +168,7 @@ When loaded into memory, it will look like:
 The first instruction copies the DAT 9 9 from location -1 to location -2 (one place back)
 
                                                       |
-                                                      v
+                                                      V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -176,14 +176,14 @@ The first instruction copies the DAT 9 9 from location -1 to location -2 (one pl
 
 The next instrution executed is a JMP, which causes execution to jump to another location - in this case back one place, causing a loop
 
-                                                                 |
-                                                                 v
+                                                                |
+                                                                V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
 
                                                       |----------
-                                                      v
+                                                      V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -197,7 +197,7 @@ But look what happens when an Imp comes along (each bot takes one instruction at
 The Imp copies his MOV forward
 
     imp
-     v
+     V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -206,21 +206,21 @@ The Imp copies his MOV forward
 The Imp Trap continues copying his DAT backwards
 
                                                   imp trap
-                                                     v
+                                                     V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
                                  ^_________|
 
            imp
-            v
+            V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
              |_________^
              
                                                              imp trap
-                                                                v
+                                                                V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | DAT 0 0 | DAT 0 0 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -228,7 +228,7 @@ The Imp Trap continues copying his DAT backwards
 The Imp copies his MOV forward... right into the trap!
 
                       imp
-                       v
+                       V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | MOV 0 1 | MOV 0 1 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -237,7 +237,7 @@ The Imp copies his MOV forward... right into the trap!
 The Imp Trap copies his killer DAT over the imp's MOV
 
                                                   imp trap
-                                                     v
+                                                     V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
@@ -246,7 +246,7 @@ The Imp Trap copies his killer DAT over the imp's MOV
 Oh noes!  The Imp executes the DAT and dies.
 
                            XXX imp XXX
-                                v
+                                V
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
     .. | MOV 0 1 | MOV 0 1 | DAT 9 9 | DAT 9 9 | MOV -1 -2 | JMP -1 | DAT 0 0 | DAT 0 0 | .. 
     ---+---------+---------+---------+---------+-----------+--------+---------+---------+---
