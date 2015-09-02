@@ -12,6 +12,6 @@ Our try at writing bots for [Core Wars](http://www.corewars.org/).
 [Grant's Simple Bot Guide](Simple Bot Guide.md)  
 [Instructions Quick reference](Instruction Reference.md)  
 [Instruction Modifiers Quick Reference](Instruction Modifiers Reference.md)  
-[Addressing Modes Reference](Addressing Modes Reference)
+[Addressing Modes Reference](Addressing Modes Reference.md)
 
 The details can be found somewhere in the [LCD Events Archive](http://leedscodedojo.github.io/archive.html).
