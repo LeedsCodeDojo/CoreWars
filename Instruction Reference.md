@@ -24,7 +24,7 @@ If the A and/or B fields are not used by the instruction, they can be left blank
 | DIV | Divide | Divides source value(s) by destination, leaving result in destination | Source | Destination |
 | MOD | Modulo | Divides source value(s) by destination, leaving remainder in destination | Source | Destination |
 | JMP | Jump | Continues execution from another address | Location to continue | Not used |
-| JMZ | Jump if Zero | Tests a number and jumps to an address if it's 0 | Location to continue | Number to test |
+| JMZ | Jump if Zero | Jumps to an address if a number is 0 | Location to continue | Number to test |
 | JMN | Jump if Not Zero | Tests a number and jumps if it isn't 0 | Location to continue | Number to test |
 | DJN | Decrement and Jump if Not Zero | Decrements a number by one, and jumps unless the result is 0 | Location to continue | Number to test |
 | SPL | Split | Starts a second process at another address | Location to start new process | Not used |
