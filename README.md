@@ -10,7 +10,7 @@ Our try at writing bots for [Core Wars](http://www.corewars.org/).
 [pMARS source](http://sourceforge.net/projects/corewar/)  
 [Original Scientific American articule describing Core Wars](http://corewar.co.uk/vogtmann/first.htm)  
 [Grant's Simple Bot Guide](Simple Bot Guide.md)  
-[Instructions Quick reference](Instruction Reference.md)
+[Instructions Quick reference](Instruction Reference.md)  
 [Instruction Modifiers Quick Reference](Instruction Modifiers Reference.md)
 
 The details can be found somewhere in the [LCD Events Archive](http://leedscodedojo.github.io/archive.html).
