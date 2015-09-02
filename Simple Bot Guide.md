@@ -351,6 +351,6 @@ The B field of the DAT instruction is used to store the location to bomb, which 
     ADD #4, 3   ; Adds 4 to the B field of the DAT
     MOV 2, @2   ; Copies the DAT to the address specified in the B-field at address 2
     JMP -2      ; Moves processing back -2 instructions
-    DAT #0, #0  ; The instruction to be copied to do the 'bombing' - also stores bombing location
+    DAT #0, #0  ; The instruction to be copied to do the 'bombing' - also stores location
 
 If you understand that, you know as much as me!  So go forth and come up with a killer bot of your own - the possibilities are endless..
